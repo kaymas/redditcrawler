@@ -69,44 +69,61 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({4:[function(require,module,exports) {
-const searchForm = document.getElementById('search-form')
-const searchInput = document.getElementById('search-input')
+})({10:[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.default = {
+    search: function (searchTerm, searchLimit, sortBy) {
+        console.log('search');
+    }
+};
+},{}],4:[function(require,module,exports) {
+'use strict';
+
+var _redditapi = require('./redditapi');
+
+var _redditapi2 = _interopRequireDefault(_redditapi);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+const searchForm = document.getElementById('search-form');
+const searchInput = document.getElementById('search-input');
 
 searchForm.addEventListener('submit', e => {
     const searchTerm = searchInput.value;
-    const sortBy = document.querySelector('input[name="sortby"]:checked').value
-    const searchLimit = document.getElementById('limit').value
-    
+    const sortBy = document.querySelector('input[name="sortby"]:checked').value;
+    const searchLimit = document.getElementById('limit').value;
+
     //validate
-    if(searchTerm === ''){
-        showMessage('Please enter a search term', 'alert-danger')
+    if (searchTerm === '') {
+        showMessage('Please enter a search term', 'alert-danger');
     }
     //clear input
-    searchInput.value = ''
+    searchInput.value = '';
 
+    //search reddit
+    _redditapi2.default.search(searchTerm, searchLimit, sortBy);
 
-    //sarch reddit
-    
+    e.preventDefault();
+});
 
-
-    e.preventDefault()
-})
-
-showMessage = function(message, className){
-    const div = document.createElement('div')
-    div.className = `alert ${className}`
-    div.appendChild(document.createTextNode(message))
+function showMessage(message, className) {
+    const div = document.createElement('div');
+    div.className = `alert ${className}`;
+    div.appendChild(document.createTextNode(message));
 
     //get parent and sibiling
-    const searchContainer = document.getElementById('search-container')
-    const search = document.getElementById('search')
+    const searchContainer = document.getElementById('search-container');
+    const search = document.getElementById('search');
 
-    searchContainer.insertBefore(div, search)
+    searchContainer.insertBefore(div, search);
 
-    setTimeout(() => document.querySelector('.alert').remove(), 3000)
+    setTimeout(() => document.querySelector('.alert').remove(), 3000);
 }
-},{}],9:[function(require,module,exports) {
+},{"./redditapi":10}],9:[function(require,module,exports) {
 
 var global = (1, eval)('this');
 var OldModule = module.bundle.Module;

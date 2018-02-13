@@ -1,3 +1,5 @@
+import reddit from './redditapi'
+
 const searchForm = document.getElementById('search-form')
 const searchInput = document.getElementById('search-input')
 
@@ -13,15 +15,13 @@ searchForm.addEventListener('submit', e => {
     //clear input
     searchInput.value = ''
 
-
-    //sarch reddit
-    
-
+    //search reddit
+    reddit.search(searchTerm, searchLimit, sortBy)
 
     e.preventDefault()
 })
 
-showMessage = function(message, className){
+function showMessage(message, className){
     const div = document.createElement('div')
     div.className = `alert ${className}`
     div.appendChild(document.createTextNode(message))
