@@ -18,11 +18,11 @@
             <h4>Search Reddit</h4>
             <form id="search-form">
                 <div class="form-group">
-                    <input type="text" id="search-input" class="form-control mb-3" placeholder="search...">
+                    <input type="text" id="search-input" class="form-control mb-3" placeholder="search..." autofocus>
                 </div>
                 <div class="form-check form-check-inline">
                     Sort By: 
-                    <input type="radio" class="form-check-input m1-2" name="sortby" value="relevance" checked>
+                    <input type="radio" class="form-check-input ml-2" name="sortby" value="relevance" checked>
                     <label class="form-check-label">
                         Relevance
                     </label>
@@ -31,6 +31,18 @@
                     <input type="radio" class="form-check-input" name="sortby" value="new">
                     <label class="form-check-label">
                         Latest
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="sortby" value="hot">
+                    <label class="form-check-label">
+                        Hot
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input type="radio" class="form-check-input" name="sortby" value="top">
+                    <label class="form-check-label">
+                        Top
                     </label>
                 </div>
                 <h5 class="mt-2">Limit: </h5>
@@ -46,9 +58,10 @@
                 <button class="btn btn-dark btn-block mt-4" type="submit">Search</button>
             </form>
         </div>
-        <div class="results"></div>
+        <div id="results"></div>
     </div>
-    
+
     <script src="./index.js"></script>
 </body>
 </html>
+<!-- parcel build index.html --public-url /redditcrawler/ -->
